@@ -30,8 +30,10 @@ int main(void)
 		else
 		{
 			if (strcmp(line, "\n") == 0)
+			{
 				continue;
-
+			}
+			
 			puts(line);
 			if (strcmp(line, "exit\n") == 0)
 			{
