@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "hsh.h"
 
 char *my_getline(void)
 {
@@ -22,8 +20,16 @@ char *my_getline(void)
     return input; // return the string that user put
 }
 
-int main(void)
+void execute_command(char *get, char **env)
 {
+	if (strcmp(get, "env") == 0)
+		print_env(env);
+}
+
+int main(int ac, char **av, char **env)
+{
+	(void)ac;
+	(void)av;
     char *get = NULL;
 
     while (1) { // infinite loop, need something to stop it
@@ -33,7 +39,8 @@ int main(void)
             free(get); // free allocate memory
             return 0; // leave the main function, so the program
         }
-        free(get); // free memory allocated
+        execute_command(get, env);
+	free(get); // free memory allocated
     } // It will return to the beginning of the loop because it's an infinite loop
 
     return 0;
