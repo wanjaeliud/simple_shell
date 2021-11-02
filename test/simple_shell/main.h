@@ -8,4 +8,8 @@
 #include <errno.h>
 #include <sys/wait.h>
 
+int word_count(char *str);
+char **split_string(char *str, char *delim);
+char *_getline(void);
+
 #endif

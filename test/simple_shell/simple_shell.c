@@ -10,22 +10,19 @@
 
 int main(void)
 {
-	ssize_t charsRead;
+	//ssize_t charsRead;
 	char *line = NULL;
 	size_t size = 0;
 	pid_t child_pid;
-	char *argv[] = {NULL, NULL};
+	char *argv[] = NULL;
 	int status;
 
 	while (1)
 	{
 		printf("#Simple_Shell$ ");
-		charsRead = getline(&line, &size, stdin);
-		if (charsRead == -1)
-		{
-			fprintf(stderr, "Failed to read input\n");
+		line = _getline();
+		if (!line)
 			break;
-		}
 		else
 		{
 			if (strcmp(line, "\n") == 0)
@@ -43,8 +40,7 @@ int main(void)
 			}
 			if (child_pid == 0)
 			{
-				argv[0] = line;
-				argv[0][(strlen(line) - 1)] = '\0';
+				argv = split_string(line, " ");
 				if (execve(argv[0], argv, NULL) == -1)
 				{
 					perror("Error: ");
