@@ -24,14 +24,17 @@ int main(void)
 		if (charsRead == -1)
 		{
 			fprintf(stderr, "Failed to read input\n");
-			continue;
+			break;
 		}
 		else
 		{
 			if (strcmp(line, "\n") == 0)
 				continue;
 			if (strcmp(line, "exit\n") == 0)
-				_exit(EXIT_SUCCESS);
+			{
+				free(line);
+				break;
+			}
 			child_pid = fork();
 			if (child_pid == -1)
 			{
@@ -41,10 +44,11 @@ int main(void)
 			if (child_pid == 0)
 			{
 				argv[0] = line;
-				if (execve(line, argv, NULL) == -1)
+				argv[0][(strlen(line) - 1)] = '\0';
+				if (execve(argv[0], argv, NULL) == -1)
 				{
 					perror("Error: ");
-					continue;
+					exit(EXIT_FAILURE);
 				}
 			}
 			else if (child_pid != 0)
@@ -53,4 +57,5 @@ int main(void)
 			}
 		}
 	}
+	_exit(EXIT_SUCCESS);
 }
