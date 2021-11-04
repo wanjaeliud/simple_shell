@@ -13,7 +13,6 @@ char *_getline(void)
 	
 	if (getline(&line, &size, stdin) == -1)
 	{
-		fprintf(stderr, "Error: Failed to read input\n");
 		return (NULL);
 	}
 

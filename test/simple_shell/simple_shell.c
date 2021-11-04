@@ -8,13 +8,14 @@
  *Return: 0 on success
  */
 
+extern char **environ;
+
 int main(void)
 {
 	//ssize_t charsRead;
 	char *line = NULL;
-	size_t size = 0;
 	pid_t child_pid;
-	char *argv[] = NULL;
+	char **argv = {NULL};
 	int status;
 
 	while (1)
@@ -27,11 +28,13 @@ int main(void)
 		{
 			if (strcmp(line, "\n") == 0)
 				continue;
-			if (strcmp(line, "exit\n") == 0)
+			if (strcmp(line, "exit") == 0)
 			{
 				free(line);
 				break;
 			}
+			if (strcmp(line, "env\n") == 0)
+				print_env(environ);
 			child_pid = fork();
 			if (child_pid == -1)
 			{
