@@ -12,15 +12,14 @@
 #include <stdbool.h>
 #include <sys/wait.h>
 
-
-
-void print_env(char **env);
-char *my_getlinr(void);
-char *find_path(char **env);
-char *get_exec_command(char *token, char *line);
-void string_copy(char *dest, char *src, size_t n);
-void execute_by_path(char *get, char **av, char **env);
-void execute_command(char *get, char **av, char **env);
-int main(int ac, char **av, char **env);
+char *getLine(void);
+char **string_line_spilt(char *line);
+int built_ins(void);
+int shell_cd(char **args);
+int shell_exit(void);
+int launch_shell(char **args);
+int execShell(char **args);
+int shell_interact();
+int main(int argc, char **argv)
 
 #endif

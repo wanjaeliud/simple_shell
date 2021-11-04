@@ -1,47 +1,63 @@
-#include "hsh.h"
+"include "hsh.h"
 
-char *my_getline(void)
+/**
+ * getLine = function to read lines from the command
+ * 
+ */
+
+char getLine()
 {
-    char *input = NULL; // initialise pointer to be passed through getline() function
-    //char **array = NULL; // initialise pointer to be passed through getline() function
-    size_t size = 0; // initialise pointer to be passed through getline() function
+	char *line = (char *)malloc(sizeof(char) *1024);
+	char ch;
+	int bufersize = 1024, position = 0;
 
-    printf("$ "); // Prompt display
+	if (!line)
+	{
+		printf("\nBuffer Allocation Error.");
+		exit(EXIT_FAILURE);
+	}
+	while(1)
+	{
+		ch getchar();
+		if (ch == EOF || ch == '\n')
+		{
+			line[position] = '\0';
+			return line;
+		}
+		else
+		{
+			line[position] = ch;
+		}
+		postion++;
 
-    if (getline(&input, &size, stdin) == -1) { // getline, get line (lol) from user input, if it return -1 that means getline has been stopped by ctrl + d or something wrong happened
-        free(input); // free memory allocated
-        return NULL; // return return a value to function but also leave the function
-    }
-    if (size == 0) // Error handling
-        return NULL;
-    if (input[strlen(input) - 1] == '\n') // Manage new line in command prompt
-        input[strlen(input) - 1] = '\0';
-
-    return input; // return the string that user put
+		if (position >= buffersize)
+		{
+			buffersize += 1024;
+			line = realloc(line, sizeof(char) * buffersize);
+			if (!line)
+			{
+				printf("\nBuffer Allocation Error.");
+				exit(EXIT_FAILURE);
+			}
+		}
+	}
 }
 
-void execute_command(char *get, char **env)
+/**
+ * main - main entry point 
+ * @argc: command line arguments
+ * @argv: pointer to number of arguments
+ *
+ */
+
+int main(int agrc, chat **argv)
 {
-	if (strcmp(get, "env") == 0)
-		print_env(env);
-}
+	if (argc == 1)
+		shell_interact();
+	else if (argc == 2)
+		shell_sript(argv[1]);
+	else
+		printf("\nInvalid Number Of Arguments");
 
-int main(int ac, char **av, char **env)
-{
-	(void)ac;
-	(void)av;
-    char *get = NULL;
-
-    while (1) { // infinite loop, need something to stop it
-        get = my_getline(); // assign to getline
-        if (!get || strcmp(get, "exit") == 0) { // check if user input is "exit"
-            printf("Exit\n");
-            free(get); // free allocate memory
-            return 0; // leave the main function, so the program
-        }
-        execute_command(get, env);
-	free(get); // free memory allocated
-    } // It will return to the beginning of the loop because it's an infinite loop
-
-    return 0;
+	return EXIT_SUCCES;
 }
