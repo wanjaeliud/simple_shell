@@ -12,14 +12,15 @@
 #include <stdbool.h>
 #include <sys/wait.h>
 
-char *getLine(void);
-char **string_line_spilt(char *line);
-int built_ins(void);
+char *get_line(void);
+char **_split_line(char *line);
+int _builtin(void);
 int shell_cd(char **args);
 int shell_exit(void);
-int launch_shell(char **args);
-int execShell(char **args);
+int _shell_launch(char **args);
+int exec_shell(char **args);
 int shell_interact();
-int main(int argc, char **argv)
+int shell_script(char filename[]);
+int main(int argc, char **argv);
 
 #endif

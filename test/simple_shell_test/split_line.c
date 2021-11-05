@@ -1,14 +1,15 @@
 #include "hsh.h"
 
 /**
- * string_line_split - split enter string into commands
+ * _split_line - split enter string into commands
  * @line: input from stin
  * Return: return command
  */
 
-char **string_line_split(char *line)
+char **_split_line(char *line)
 {
 	char **tokens = (char **)malloc(sizeof(char *) * 64);
+
 	char *token;
 
 	char delim[10] = " \t\n\r\a";
@@ -19,7 +20,9 @@ char **string_line_split(char *line)
 		printf("\nBuffer Allocation Error.");
 		exit(EXIT_FAILURE);
 	}
+
 	token = strtok(line, delim);
+
 	while (token != NULL)
 	{
 		tokens[position] = token;
