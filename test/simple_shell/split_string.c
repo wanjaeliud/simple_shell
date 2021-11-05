@@ -13,50 +13,48 @@ int word_count(char *str)
 
 	while (str[i])
 	{
-		if (str[i] == ' ' && str[i - 1] != ' ')
-			w_count++;
+		if (str[i] == ' ')
+		{
+			if (str[i + 1] != ' ' && str[i + 1] != '\0')
+				w_count++;
+			else if (i == 0)
+				w_count++;
+		}
 		i++;
 	}
 	w_count++;
 	return (w_count);
 }
 
-
 /**
- *split_string - splits a string into an array of individual words
- *@str: the string to split into words
+ *split_string - splits a string into individual words
+ *@str: the string to split
  *@delim: the delimiter to split str with
  *
- *Return: pointer to an array of words from str
+ *Return: a pointer to an array of words from str
  */
 
 char **split_string(char *str, char *delim)
 {
+	char **word_array;
 	char *token;
-	char **string_array;
-	int index = 0, w_count = 0;
+	int words, i = 0;
 
-	w_count = word_count(str);
+	words = word_count(str);
+	if (words == 0)
+		return (NULL);
 
-	string_array = malloc(sizeof(char *) * (w_count + 1));
-	if (string_array == NULL)
+	word_array = malloc(sizeof(char *) * (words + 1));
+	if (!word_array)
 		return (NULL);
 
 	token = strtok(str, delim);
 
 	while (token != NULL)
 	{
-		/*string_array[index] = malloc(sizeof(char) * strlen(token));
-		if (string_array[index] == NULL)
-		{
-			for (; index >= 0; index--)
-				free(string_array[index]);
-			free(string_array);
-			return (NULL);
-			}*/
-		string_array[index] = token;
+		word_array[i] = token;
 		token = strtok(NULL, delim);
-		index++;
+		i++;
 	}
-	return (string_array);
+	return (word_array);
 }
