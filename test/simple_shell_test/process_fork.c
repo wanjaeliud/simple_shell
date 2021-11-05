@@ -12,6 +12,8 @@ int _shell_launch(char **args)
 {
 	pid_t pid;
 
+	int status;
+
 	pid = fork();
 
 	if (pid == 0)
@@ -27,6 +29,8 @@ int _shell_launch(char **args)
 	{
 		perror("$ ");
 	}
+	else
+		wait(&status);
 
 	return (1);
 }
