@@ -1,17 +1,16 @@
 #include "hsh.h"
 
 /**
- * launch_shell - function to create child preocess
+ * _shell_launch - function to create child preocess
  * and run commands.
  * @args: arguments
  *
  * Return: returns 1
  */
 
-int launch_shell(char **args)
+int _shell_launch(char **args)
 {
-	pid_t pid, wpid;
-	int status;
+	pid_t pid;
 
 	pid = fork();
 
@@ -27,12 +26,6 @@ int launch_shell(char **args)
 	else if (pid < 0)
 	{
 		perror("$ ");
-	}
-	else
-	{
-		do {
-			wpid = waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 
 	return (1);

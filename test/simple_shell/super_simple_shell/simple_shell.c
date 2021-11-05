@@ -12,7 +12,7 @@ extern char **environ;
 
 int main(void)
 {
-	//ssize_t charsRead;
+	/* ssize_t charsRead; */
 	char *line = NULL;
 	pid_t child_pid;
 	char **argv = {NULL};

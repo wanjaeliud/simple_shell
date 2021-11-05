@@ -1,16 +1,14 @@
-#include "hsh.c"
+#include "hsh.h"
 
 /**
- * built_ins - builtin command defination
+ * _builtin - builtin command defination
  *
  * Return: returns number of builtin commands
  */
 
-int built_ins(void)
+int _builtin(void)
 {
 	char *builtin_cmd[] = {"cd", "exit"};
-
-	int (*built_func[]) (char **) = {&shel_cd, &shell_exit};
 
 	return (sizeof(builtin_cmd) / sizeof(char *));
 }
@@ -46,6 +44,5 @@ int shell_cd(char **args)
 
 int shell_exit(void)
 {
-	QUIT = 1;
 	return (0);
 }
