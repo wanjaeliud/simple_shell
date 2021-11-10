@@ -19,9 +19,7 @@ int main(void)
 		input = _getline();
 		if (!input)
 			exit(EXIT_SUCCESS);
-		if (strcmp(input, "\n") == 0)
-			continue;
-		if (execute_builtin(input) == 0)
+		if (strcmp(input, "\n") == 0 || execute_builtin(input) == 0)
 			continue;
 		else
 		{
