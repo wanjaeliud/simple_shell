@@ -65,35 +65,32 @@ char *get_abs_pathname(char *argument)
 		else
 			return (argument);
 	}
-	else
-	{
-		path_dir = getPATH();
-		for (i = 0; path_dir[i]; i++)
-		{
-			for (j = 0; path_dir[i][j]; j++)
-			{
-				buffer[j] = path_dir[i][j];
-			}
-			buffer[j] = '/';
-			j++;
 
-			for (n = 0; argument[n]; n++)
-			{
-				buffer[j] = argument[n];
-				j++;
-			}
-			buffer[j] = '\0';
-			if (stat(buffer, &status) == -1)
-			{
-				continue;
-			}
-			else
-			{
-				free (path_dir);
-				return (buffer);
-			}
+	path_dir = getPATH();
+	for (i = 0; path_dir[i]; i++)
+	{
+		for (j = 0; path_dir[i][j]; j++)
+		{
+			buffer[j] = path_dir[i][j];
+		}
+		buffer[j] = '/';
+		j++;
+		for (n = 0; argument[n]; n++)
+		{
+			buffer[j] = argument[n];
+			j++;
+		}
+		buffer[j] = '\0';
+		if (stat(buffer, &status) == -1)
+		{
+			continue;
+		}
+		else
+		{
+			free(path_dir);
+			return (buffer);
 		}
 	}
-	free (path_dir);
+	free(path_dir);
 	return (NULL);
 }
