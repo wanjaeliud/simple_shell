@@ -1,59 +1,52 @@
-#include "hsh.h"
+#include "main.h"
 
 /**
- * get_line - funcion to read line from command into buffer
+ *main - executes commands types by user
  *
- * Return: returns on success
+ *Return: 0 on success
  */
 
-char *get_line(void)
+int main(void)
 {
-	char *line = (char *) malloc(sizeof(char) * 1024);
-	char ch;
-
-	int position = 0, buffersize = 1024;
-
-	if (!line)
-	{
-		printf("\nBuffer Allocation Error.");
-		exit(EXIT_FAILURE);
-	}
+	char *input;
+	char **arguments = {NULL};
+	char *abs_pathname;
+	int status;
 
 	while (1)
 	{
-		ch = getchar();
-		if (ch == EOF || ch == '\n')
-		{
-			line[position] = '\0';
-			return (line);
-		}
+		printf("#simpleShell$ ");
+		input = _getline();
+		if (!input)
+			exit(EXIT_SUCCESS);
+		if (strcmp(input, "\n") == 0)
+			continue;
+		if (execute_builtin(input) == 0)
+			continue;
 		else
 		{
-			line[position] = ch;
-		}
-		position++;
-
-		if (position >= buffersize)
-		{
-			buffersize += 1024;
-			line = realloc(line, sizeof(char) * buffersize);
-			if (!line)
+			arguments = split_string(input, " ");
+			if (!arguments)
 			{
-				printf("\nBuffer Allocation Error");
-				exit(EXIT_FAILURE);
+				fprintf(stderr, "Failed to allocate memory\n");
+				continue;
+			}
+			abs_pathname = get_abs_pathname(arguments[0]);
+			if (!abs_pathname)
+			{
+				perror("Error: ");
+				continue;
+			}
+			else
+			{
+				arguments[0] = abs_pathname;
+				status = create_process(arguments);
+				if (status == -1)
+					continue;
 			}
 		}
+		free(input);
+		free(arguments);
 	}
-}
-
-int main(int argc, char **argv)
-{
-	if (argc == 1)
-		shell_interact();
-	else if (argc == 2)
-		shell_script(argv[1]);
-	else
-		printf("\nInvalid Number of Arguments");
-
-	return (EXIT_SUCCESS);
+	_exit(EXIT_SUCCESS);
 }

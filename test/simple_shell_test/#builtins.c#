@@ -8,7 +8,7 @@
 
 int _builtin(void)
 {
-	char *builtin_cmd[] = {"cd", "exit"};
+	char **builtin_cmd = {"cd", "exit"};
 
 	return (sizeof(builtin_cmd) / sizeof(char *));
 }
