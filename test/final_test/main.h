@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/wait.h>
 
 extern char **environ;
 
@@ -32,5 +33,6 @@ void exit_shell(char *input);
 int execute_builtin(char *input);
 char **getPATH(void);
 char *get_abs_pathname(char *argument, char **path_directories);
+int create_process(char **arguments);
 
 #endif

@@ -94,6 +94,18 @@ int main(void)
 
 	printf("After get_abs_pathname function = it  works\n");
 // get_abs_pathname() works	
-	
+
+
+// test create_process() function
+
+	int status;
+
+	status = create_process(arguments);
+	if (status == -1)
+		printf("continue\n");
+	else if (status == 0)
+		printf("command executed\n");
+	printf("it works\n");
+// create_process() works	
 	return (0);
 }
