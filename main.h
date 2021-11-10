@@ -22,7 +22,7 @@ typedef struct Builtins
 {
 	char *name;
 	void (*function)(char *input);
-}builtins;
+} builtins;
 
 
 char *_getline(void);
