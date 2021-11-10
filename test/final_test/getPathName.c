@@ -47,17 +47,16 @@ char **getPATH(void)
  *get_abs_pathname - gets the absolute pathname
  *                        of an existing shell executable
  *@argument: the name of executable to get absolute pathname for
- *@path_dir: the list of direcotries to check
- *           if argument exists in
  *
  *Return: absolute pathname of argument
 */
 
-char *get_abs_pathname(char *argument, char **path_dir)
+char *get_abs_pathname(char *argument)
 {
 	struct stat status;
 	static char buffer[1024];
 	int i, j, n;
+	char **path_dir;
 
 	if (argument[0] == '/')
 	{
@@ -68,6 +67,7 @@ char *get_abs_pathname(char *argument, char **path_dir)
 	}
 	else
 	{
+		path_dir = getPATH();
 		for (i = 0; path_dir[i]; i++)
 		{
 			for (j = 0; path_dir[i][j]; j++)
@@ -84,10 +84,16 @@ char *get_abs_pathname(char *argument, char **path_dir)
 			}
 			buffer[j] = '\0';
 			if (stat(buffer, &status) == -1)
+			{
 				continue;
+			}
 			else
+			{
+				free (path_dir);
 				return (buffer);
+			}
 		}
 	}
+	free (path_dir);
 	return (NULL);
 }

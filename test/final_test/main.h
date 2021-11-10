@@ -32,7 +32,7 @@ void print_env(char *input);
 void exit_shell(char *input);
 int execute_builtin(char *input);
 char **getPATH(void);
-char *get_abs_pathname(char *argument, char **path_directories);
+char *get_abs_pathname(char *argument);
 int create_process(char **arguments);
 
 #endif
