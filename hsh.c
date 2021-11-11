@@ -15,7 +15,7 @@ int main(void)
 
 	while (1)
 	{
-		printf("#simpleShell$ ");
+		printf("$ ");
 		input = _getline();
 		if (!input)
 			exit(EXIT_SUCCESS);
