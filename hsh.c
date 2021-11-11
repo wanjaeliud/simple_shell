@@ -15,7 +15,7 @@ int main(void)
 
 	while (1)
 	{
-		printf("$ ");
+		printf("#cisfun$ ");
 		input = _getline();
 		if (!input)
 			exit(EXIT_SUCCESS);
