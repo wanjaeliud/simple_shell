@@ -1,8 +1,10 @@
 # Simple Shell
 
+This a simple shell that we implemented using C, created to run in a Linux-like operating system, to capture and execute commands from the user. It's designed to mimic sh shell.
+
 ## Output
-Unless specified otherwise, your program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
-The only difference is when you print an error, the name of the program must be equivalent to your argv[0] (See below)
+* The program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
+* The only difference is when you print an error, the name of the program must be equivalent to your argv[0]
 Example of error with sh:
 ```
 $ echo "qwerty" | /bin/sh
@@ -10,8 +12,9 @@ $ echo "qwerty" | /bin/sh
 $ echo "qwerty" | /bin/../bin/sh
 /bin/../bin/sh: 1: qwerty: not found
 $
+```
 Same error with your program hsh:
-
+```
 $ echo "qwerty" | ./hsh
 ./hsh: 1: qwerty: not found
 $ echo "qwerty" | ./././hsh
@@ -53,12 +56,6 @@ $
 * `write (man 2 write)`
 
 
-### Contributors
-* [Joseph Emmanuel](https://github.com/dnjoe96)
-* [Washington Obungu](https://github.com/Wa2hingt0n)
-
-If you find some observations or ways to improve this project, kindly reach out to any of us.
-
 Compilation
 Your shell will be compiled this way:
 
@@ -93,3 +90,4 @@ $
 * **Eliud Wanja** - [wanjaeliud](https://github.com/wanjaeliud)
 
 ## Acknowledgements
+If you find some observations or ways to improve this project, kindly reach out to any of us.
