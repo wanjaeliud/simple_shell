@@ -58,7 +58,7 @@ char *get_abs_pathname(char *argument)
 	int i, j, n;
 	char **path_dir;
 
-	if (argument[0] == '/')
+	if (argument[0] == '/' || argument[0] == '.')
 	{
 		if (stat(argument, &status) == -1)
 			return (NULL);
