@@ -19,10 +19,10 @@ int main(void)
 
 
 // test word_count() function	
-/*
+
 	int words = word_count(input);
 	printf("words = %d\n", words);
-*/
+
 // fail: exess words counted
 
 	
@@ -31,7 +31,7 @@ int main(void)
 
 	char **arguments;
 	arguments = split_string(input, " ");
-	if (!arguments)
+	if (arguments == NULL)
 		fprintf(stderr, "split_string failed!\n");
 	
 	for (i = 0; arguments[i]; i++)
@@ -68,12 +68,12 @@ int main(void)
 // test getPATH() function
 
 //	int n;
-	char **path_dir;
+/*	char **path_dir;
 
 	path_dir = getPATH();
 	if (!path_dir)
 		fprintf(stderr, "getPATH failed!\n");
-
+*/
 //	for (n = 0; path_dir[n]; n++)
 //		printf("%s\n", path_dir[n]);
 
@@ -81,7 +81,7 @@ int main(void)
 
 
 // test get_abs_pathname() function
-
+/*
 	char *abs_pathname;
 
 	printf("Before get_abs_pathname function\n");
@@ -93,11 +93,12 @@ int main(void)
 	printf("new arguments[0] = %s\n", arguments[0]);
 
 	printf("After get_abs_pathname function = it  works\n");
+*/
 // get_abs_pathname() works	
 
 
 // test create_process() function
-
+/*
 	int status;
 
 	status = create_process(arguments);
@@ -106,6 +107,7 @@ int main(void)
 	else if (status == 0)
 		printf("command executed\n");
 	printf("it works\n");
+*/
 // create_process() works	
 	return (0);
 }

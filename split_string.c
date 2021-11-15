@@ -49,6 +49,8 @@ char **split_string(char *str, char *delim)
 		return (NULL);
 
 	token = strtok(str, delim);
+	if (token == NULL)
+		return (NULL);
 
 	while (token != NULL)
 	{

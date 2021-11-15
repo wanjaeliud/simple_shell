@@ -23,11 +23,8 @@ int main(void)
 		else
 		{
 			arguments = split_string(input, " ");
-			if (!arguments)
-			{
-				fprintf(stderr, "Failed to allocate memory\n");
+			if (arguments == NULL)
 				continue;
-			}
 			abs_pathname = get_abs_pathname(arguments[0]);
 			if (!abs_pathname)
 			{
