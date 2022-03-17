@@ -1,4 +1,4 @@
-# Simple Shell
+# Simple Shell[Licence: MIT](https://github.com/Beldine-Moturi/simple_shell/blob/master/LICENSE)
 
 This a Unix command line interpreter that we implemented using C, created to run in a Unix-like operating system, to capture and execute commands from the user. It's designed to mimic sh shell.
 
