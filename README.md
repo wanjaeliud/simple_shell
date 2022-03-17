@@ -1,66 +1,21 @@
 # Simple Shell
 
-This a simple shell that we implemented using C, created to run in a Linux-like operating system, to capture and execute commands from the user. It's designed to mimic sh shell.
+This a Unix command line interpreter that we implemented using C, created to run in a Unix-like operating system, to capture and execute commands from the user. It's designed to mimic sh shell.
+
+## Installation
+clone this repository:
+```
+git clone git@github.com:wanjaeliud/simple_shell.git
+cd simple_shell
+```
+
+## Compilation and output
+Your shell should be compiled this way:
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
 
 ## Output
-* The program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
-* The only difference is when you print an error, the name of the program must be equivalent to your argv[0]
-Example of error with sh:
-```
-$ echo "qwerty" | /bin/sh
-/bin/sh: 1: qwerty: not found
-$ echo "qwerty" | /bin/../bin/sh
-/bin/../bin/sh: 1: qwerty: not found
-$
-```
-Same error with your program hsh:
-```
-$ echo "qwerty" | ./hsh
-./hsh: 1: qwerty: not found
-$ echo "qwerty" | ./././hsh
-./././hsh: 1: qwerty: not found
-$
-```
-## System calls and functions utilized
-
-* `access (man 2 access)`
-* `chdir (man 2 chdir)`
-* `close (man 2 close)`
-* `closedir (man 3 closedir)`
-* `execve (man 2 execve)`
-* `exit (man 3 exit)`
-* `_exit (man 2 _exit)`
-* `fflush (man 3 fflush)`
-* `fork (man 2 fork)`
-* `free (man 3 free)`
-* `getcwd (man 3 getcwd)`
-* `getline (man 3 getline)`
-* `getpid (man 2 getpid)`
-* `isatty (man 3 isatty)`
-* `kill (man 2 kill)`
-* `malloc (man 3 malloc)`
-* `open (man 2 open)`
-* `opendir (man 3 opendir)`
-* `perror (man 3 perror)`
-* `read (man 2 read)`
-* `readdir (man 3 readdir)`
-* `signal (man 2 signal)`
-* `stat (__xstat) (man 2 stat)`
-* `lstat (__lxstat) (man 2 lstat)`
-* `fstat (__fxstat) (man 2 fstat)`
-* `strtok (man 3 strtok)`
-* `wait (man 2 wait)`
-* `waitpid (man 2 waitpid)`
-* `wait3 (man 2 wait3)`
-* `wait4 (man 2 wait4)`
-* `write (man 2 write)`
-
-
-Compilation
-Your shell will be compiled this way:
-
-`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
-Testing
 Your shell should work like this in interactive mode:
 ```
 $ ./hsh
@@ -84,6 +39,18 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
 ```
+
+## Files
+This repository contains the following files:
+| File | Description |
+| -------- | ----------- |
+| [hsh.c](./hsh.c) | This is the entry point of our program |
+| [_getline.c](./_getline.c) | Reads the standard input for commands |
+| [execute_builtins.c](./execute_builtins.c) | Implements the shell built in commands |
+| [split_string.c](./split_string.c) | Tokenizes arguments from the standard input |
+| [getPathName.c](./getPathName.c) | Fetches the shell executable programs |
+| [create_process.c](./create_process.c) | creates child process to execute shell programs |
+| [man_1_simple_shell](./man_1_simple_shell) | Contains the man page for our Simple shell |
 
 ## Contributors
 * **Beldine Moturi** - [Beldine-Moturi](https://github.com/Beldine-Moturi)
